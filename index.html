@@ -1,121 +1,143 @@
 <!DOCTYPE html>
-<html>  
-<head>   
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <title>1023论坛-网络安全技术交流论坛</title>
-    <style type="text/css">
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1023论坛</title>
+    <style>
         body {
-            background: #000;
-            overflow: hidden;
             margin: 0;
             padding: 0;
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Consolas', monospace;
+            overflow-x: hidden;
+        }
+
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 1px solid #0f03;
+        }
+
+        nav {
+            background: rgba(0, 20, 0, 0.95);
+            padding: 1rem;
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid #0f0;
+        }
+
+        nav a {
+            color: #0f0;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            transition: text-shadow 0.3s;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .post-list {
+            margin-top: 2rem;
+        }
+
+        .post-item {
+            background: rgba(0, 30, 0, 0.3);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 3px solid #0f0;
+            transition: transform 0.2s;
+        }
+
+        .post-item:hover {
+            transform: translateX(10px);
+        }
+
+        .glow {
+            text-shadow: 0 0 10px #0f0;
         }
     </style>
 </head>
-   
-<body>  
-<canvas id="cvs"></canvas>
-<script type="text/javascript">
-    var cvs = document.getElementById("cvs");
-    var ctx = cvs.getContext("2d");
-    var cw = cvs.width = document.body.clientWidth;
-    var ch = cvs.height = document.body.clientHeight;
-    //动画绘制对象
-    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-    var codeRainArr = []; //代码雨数组
-    var cols = parseInt(cw / 14); //代码雨列数
-    var step = 16;    //步长，每一列内部数字之间的上下间隔
-    ctx.font = "bold 26px microsoft yahei"; //声明字体，个人喜欢微软雅黑
- 
-    function createColorCv() {
-        //画布基本颜色
-        ctx.fillStyle = "#242424";
-        ctx.fillRect(0, 0, cw, ch);
-    }
- 
-    //创建代码雨
-    function createCodeRain() {
-        for (var n = 0; n < cols; n++) {
-            var col = [];
-            //基础位置，为了列与列之间产生错位
-            var basePos = parseInt(Math.random() * 300);
-            //随机速度 3~13之间
-            var speed = parseInt(Math.random() * 10) + 3;
-            //每组的x轴位置随机产生
-            var colx = parseInt(Math.random() * cw)
- 
-            //绿色随机
-            var rgbr = 0;
-            var rgbg = parseInt(Math.random() * 255);
-            var rgbb = 0;
-            //ctx.fillStyle = "rgb("+r+','+g+','+b+")"
- 
-            for (var i = 0; i < parseInt(ch / step) / 2; i++) {
-                var code = {
-                    x: colx,
-                    y: -(step * i) - basePos,
-                    speed: speed,
-                    //  text : parseInt(Math.random()*10)%2 == 0 ? 0 : 1  //随机生成0或者1
-                     text: ["0", "1", "1", "0", "1", "0", "1", "0", "1", "0", "0", "1", "1", "0", "0", "1", "0", "1", "0", "0", "", "1", "0", "0", "1"][parseInt(Math.random() * 11)], //随机生成字母数组中的一个
-                    color: "rgb(" + rgbr + ',' + rgbg + ',' + rgbb + ")"
-                }
-                col.push(code);
-            }
-            codeRainArr.push(col);
+<body>
+    <canvas id="matrix"></canvas>
+    
+    <nav>
+        <a href="#" class="glow">首页</a>
+        <a href="#">技术文档</a>
+        <a href="#">漏洞库</a>
+        <a href="#">交流区</a>
+        <a href="#" style="float: right">登录/注册</a>
+    </nav>
+
+    <div class="container">
+        <div class="post-list">
+            <h2>最新帖子 <span class="blink">▌</span></h2>
+            
+        </div>
+    </div>
+
+    <script>
+        // 矩阵数字雨效果
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = '01';
+        const fontSize = 14;
+        const columns = canvas.width/fontSize;
+        const drops = [];
+
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
         }
-    }
- 
-    //代码雨下起来
-    function codeRaining() {
-        //把画布擦干净
-        ctx.clearRect(0, 0, cw, ch);
-        //创建有颜色的画布
-        //createColorCv();
-        for (var n = 0; n < codeRainArr.length; n++) {
-            //取出列
-            col = codeRainArr[n];
-            //遍历列，画出该列的代码
-            for (var i = 0; i < col.length; i++) {
-                var code = col[i];
-                if (code.y > ch) {
-                    //如果超出下边界则重置到顶部
-                    code.y = 0;
-                } else {
-                    //匀速降落
-                    code.y += code.speed;
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random()*chars.length)];
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
                 }
-                
-                //1 颜色也随机变化
-                //ctx.fillStyle = "hsl("+(parseInt(Math.random()*359)+1)+",30%,"+(50-i*2)+"%)"; 
- 
-                //2 绿色逐渐变浅
-                // ctx.fillStyle = "hsl(123,80%,"+(30-i*2)+"%)"; 
- 
-                //3 绿色随机
-                // var r= 0;
-                // var g= parseInt(Math.random()*255) + 3;
-                // var b= 0;
-                // ctx.fillStyle = "rgb("+r+','+g+','+b+")";
- 
-                //4 一致绿
-                ctx.fillStyle = code.color;
- 
- 
-                //把代码画出来
-                ctx.fillText(code.text, code.x, code.y);
+                drops[i]++;
             }
         }
-        requestAnimationFrame(codeRaining);
-    }
- 
-    //创建代码雨
-    createCodeRain();
-    //开始下雨 >>
-    requestAnimationFrame(codeRaining);
-</script> 
+
+        // 动态调整画布大小
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // 闪烁光标效果
+        setInterval(() => {
+            document.querySelector('.blink').style.visibility = 
+                document.querySelector('.blink').style.visibility === 'hidden' 
+                ? 'visible' 
+                : 'hidden';
+        }, 500);
+
+        // 运行动画
+        setInterval(drawMatrix, 50);
+    </script>
 </body>
 </html>
