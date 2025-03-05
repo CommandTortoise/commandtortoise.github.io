@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1023论坛 ヾ(≧▽≦*)o</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Consolas', monospace;
+            overflow-x: hidden;
+        }
 
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 1px solid #0f03;
+        }
+
+        nav {
+            background: rgba(0, 20, 0, 0.95);
+            padding: 1rem;
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid #0f0;
+        }
+
+        nav a {
+            color: #0f0;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            transition: text-shadow 0.3s;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .post-list {
+            margin-top: 2rem;
+        }
+
+        .post-item {
+            background: rgba(0, 30, 0, 0.3);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 3px solid #0f0;
+            transition: transform 0.2s;
+        }
+
+        .post-item:hover {
+            transform: translateX(10px);
+        }
+
+        .glow {
+            text-shadow: 0 0 10px #0f0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    
+    <nav>
+        <a href="#" class="glow">暂时没写</a>
+    </nav>
+
+    <div class="container">
+        <div class="post-list">
+            <h2>空空如也(T＿T) <span class="blink">▌</span></h2>
+            <div class="post-item">
+                <h3>空~</h3>
+                <p>作者：CommandTortoise | 2025.3.5 </p>
+            </div>
+          
+        </div>
+    </div>
+
+    <script>
+        // 矩阵数字雨效果
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = '01';
+        const fontSize = 14;
+        const columns = canvas.width/fontSize;
+        const drops = [];
+
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random()*chars.length)];
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // 动态调整画布大小
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // 闪烁光标效果
+        setInterval(() => {
+            document.querySelector('.blink').style.visibility = 
+                document.querySelector('.blink').style.visibility === 'hidden' 
+                ? 'visible' 
+                : 'hidden';
+        }, 500);
+
+        // 运行动画
+        setInterval(drawMatrix, 50);
+    </script>
+</body>
+</html>
