@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="icon" href="/1023.ico" type="image/x-icon">
     <title>1023论坛 ヾ(≧▽≦*)o</title>
     <style>
@@ -95,7 +96,58 @@
             </div>
         </div>
     </div>
+<script>
+        // 键盘输入序列
+        const keyboardSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+        // 触摸输入序列
+        const touchSequence = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right'];
 
+        let keyboardInput = [];
+        let touchInput = [];
+
+        // 监听键盘事件
+        document.addEventListener('keydown', (event) => {
+            keyboardInput.push(event.key);
+            if (keyboardInput.length > keyboardSequence.length) {
+                keyboardInput.shift();
+            }
+            if (keyboardInput.join() === keyboardSequence.join()) {
+                window.location.href = 'https://www.example.com'; // 替换为目标网页
+            }
+        });
+
+        // 监听触摸事件
+        let touchStartX, touchStartY;
+
+        document.addEventListener('touchstart', (event) => {
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (event) => {
+            const touchEndX = event.changedTouches[0].clientX;
+            const touchEndY = event.changedTouches[0].clientY;
+
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+
+            let direction = '';
+
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                direction = deltaX > 0 ? 'right' : 'left';
+            } else {
+                direction = deltaY > 0 ? 'down' : 'up';
+            }
+
+            touchInput.push(direction);
+            if (touchInput.length > touchSequence.length) {
+                touchInput.shift();
+            }
+            if (touchInput.join() === touchSequence.join()) {
+                window.location.href = 'https://www.1023forum.com/1023/1023.html'; // 替换
+            }
+        });
+</script>
     <script>
         // 矩阵数字雨效果
         const canvas = document.getElementById('matrix');
