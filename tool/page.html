@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1023Forum-常用工具下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #fafafa;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2.5rem 0;
+            background: #000;
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+            padding: 1rem;
+        }
+
+        .tool-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #eee;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .tool-image {
+            width: 100%;
+            height: 180px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+
+        .tool-image::after {
+            content: "图片占位";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .tool-title {
+            color: #000;
+            font-size: 1.15rem;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .tool-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: auto;
+            min-height: 72px;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            color: white;
+            padding: 0.7rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #000;
+            transform: scale(1.02);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 1200px) {
+            .tool-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .tool-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            header {
+                padding: 2rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tool-image {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>常用工具</h1>
+            <p>Windows/Linux/Android</p>
+        </header>
+
+
+        <div class="tool-grid">
+            <div class="tool-card">
+                <div class="tool-image"></div>
+                <h3 class="tool-title">Nmap</h3>
+                <p class="tool-description">最常用的漏洞扫描工具</p>
+                <a href="#" class="download-btn">详情</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
