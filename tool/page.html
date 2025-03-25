@@ -74,7 +74,7 @@
         }
 
         .tool-image::after {
-            content: "图片占位";
+            content: "未添加";
             position: absolute;
             top: 50%;
             left: 50%;
@@ -145,11 +145,46 @@
             
             .tool-image {
                 height: 160px;
+              nav 
+        {
+           position: sticky;
+           top: 0;
+           z-index: 10; /* 确保导航在最上层 */
+           background: rgba(0, 0, 0, 0.95); /* 增强背景透明度 */
+        }
+
+
+        nav a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            transition: text-shadow 0.3s;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 10px #0f0;
+        }
+        
+        #matrix
+         {
+            position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+            height: 100%;
+            z-index: -1; /* 将canvas置于内容下层 */
+         }
             }
         }
     </style>
 </head>
 <body>
+     <canvas id="matrix"></canvas>
+     <nav>
+        <a href="/index.html" class="glow">返回首页</a>
+        <a href="/GH/gh.html">漏洞库</a>
+        <a href="/register/1023text.html" style="float: right">登录/注册</a>
+    </nav>
     <div class="container">
         <header>
             <h1>常用工具</h1>
@@ -162,7 +197,7 @@
                 <div class="tool-image"></div>
                 <h3 class="tool-title">Nmap</h3>
                 <p class="tool-description">最常用的漏洞扫描工具</p>
-                <a href="#" class="download-btn">详情</a>
+                <a href="https://www.1023forum.top/tool/page.html">详情</a>
             </div>
 
         </div>
