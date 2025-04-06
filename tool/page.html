@@ -130,7 +130,7 @@
             margin: 10px 0;
         }
 
-        /* 响应式调整 */
+
         @media (max-width: 1200px) {
             .tool-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -153,7 +153,7 @@
     }
     
     .tool-image::before {
-        opacity: 1; /* 移动端始终显示提示 */
+        opacity: 1;
     }
 }
         
@@ -161,8 +161,8 @@
         {
            position: sticky;
            top: 0;
-           z-index: 10; /* 确保导航在最上层 */
-           background: rgba(0, 0, 0, 0.95); /* 增强背景透明度 */
+           z-index: 10; 
+           background: rgba(0, 0, 0, 0.95); 
         }
 
 
@@ -184,7 +184,7 @@
              left: 0;
              width: 100%;
             height: 100%;
-            z-index: -1; /* 将canvas置于内容下层 */
+            z-index: -1;
          }
     </style>
 </head>
@@ -217,7 +217,7 @@
 
                  <div class="tool-card">
                             <div class="tool-image">
-                            <img src="git.jpg" width="200" height="92"> <!-- 修正多余的 > 符号 -->
+                            <img src="git_1.jpg" width="200" height="92">
                             </div>
                         <h3 class="tool-title">Git</h3>
                         <p class="tool-description">分布式版本控制软件</p>
@@ -226,7 +226,7 @@
                            rel="noopener" 
                            class="download-btn">官网下载</a>
                     </div>
-                </div> <!-- 只保留一个 tool-grid 容器 -->
+                </div> 
         
     </div>
 </body>
