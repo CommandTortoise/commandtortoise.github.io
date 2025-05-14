@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<html>
+<head>
+    <title>[文件共享]</title>
+    <style>
+        #editor { 
+            width: 80%; 
+            height: 300px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="editor" contenteditable="true"></div>
+    <button onclick="saveContent()">保存内容</button>
+    
+    <script>
+        // 初始化时加载内容
+        window.onload = async function() {
+            const response = await fetch('content.txt');
+            const text = await response.text();
+            document.getElementById('editor').innerText = text;
+        }
+
+        async function saveContent() {
+            const content = document.getElementById('editor').innerText;
+            const token = 'ghp_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'; // GitHub令牌
+            const repo = 'CommandTortoise/commandtortoise.github.io'; // 仓库路径
+            
+            // 获取当前文件SHA
+            const shaResponse = await fetch(`https://api.github.com/repos/${repo}/contents/content.txt`);
+            const shaData = await shaResponse.json();
+            
+            // 更新文件
+            const updateResponse = await fetch(`https://api.github.com/repos/${repo}/contents/content.txt`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Update content',
+                    content: btoa(unescape(encodeURIComponent(content))),
+                    sha: shaData.sha
+                })
+            });
+            
+            alert(updateResponse.ok ? '保存成功！' : '保存失败');
+        }
+    </script>
+</body>
+</html>
