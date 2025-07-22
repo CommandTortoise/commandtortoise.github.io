@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYTMC_NetGames | 专业游戏组织</title>
+    <link rel="stylesheet" href="./SYTMC_NetGames _ 专业游戏组织_files/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff2d75;
+            --dark: #0f0c29;
+            --darker: #080616;
+            --light: #ffffff;
+            --gray: #a0a0a0;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 顶部横幅区域 */
+           .top-banner {
+                    width: 100%;
+                    height: auto; /* 改为自适应高度 */
+                    min-height: 398px; /* 保持最小高度 */
+                    background-image: url('https://p.sda1.dev/25/a0bf2ee6a35574e600cdbb2b7172da12/TopPicV2.jpg');
+                    background-size: 100% auto; /* 宽度100%，高度自适应 */
+                    background-position: center;
+                    position: relative;
+                    margin-top: 80px;
+                    background-color: #000000; /* 添加背景色以防空白 */
+        }
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);   /*覆盖颜色*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .banner-content {
+            max-width: 1000px;
+        }
+
+        .banner-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc, #ff2d75);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .banner-content p {
+            font-size: 1.3rem;
+            color: var(--gray);
+        }
+
+        /* 导航栏样式 */
+        header {
+            background: rgba(10, 8, 30, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(106, 17, 203, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px rgba(255, 45, 117, 0.5);
+        }
+
+        .logo span {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 45, 117, 0.7);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--light);
+        }
+
+        /* Hero 区域样式 */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(106, 17, 203, 0.2) 0%, rgba(10, 8, 30, 0.9) 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            padding: 40px;
+            background: rgba(15, 12, 41, 0.7);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(106, 17, 203, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255, 45, 117, 0.8);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 38px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 117, 252, 0.6);
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+
+        /* 轮播图样式 */
+        .carousel-section {
+            padding: 100px 0;
+            background: var(--darker);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: white;
+        }
+
+        .carousel-caption h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .carousel-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(106, 17, 203, 0.8);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        /* 图文介绍区域 */
+                /* 图文介绍区域 */
+                .features-section {
+            padding: 100px 0;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 100px;
+            gap: 50px;
+        }
+
+        .feature:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--darker);
+            padding: 70px 0 30px;
+            border-top: 1px solid rgba(106, 17, 203, 0.3);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1300px) {
+    .top-banner {
+        background-size: cover; /* 在小屏幕上恢复cover模式 */
+    }
+            /* 响应式设计 */
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 8, 30, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: all 0.4s ease;
+            }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .carousel-item img {
+                height: 300px;
+            }
+
+            .carousel-caption h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .feature-content h3 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-item img {
+                height: 250px;
+            }
+            
+            .banner-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-content p {
+                font-size: 1rem;
+            }
+        }
+}
+</style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="container nav-container">
+            <a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#" class="logo">
+                <img src="./SYTMC_NetGames _ 专业游戏组织_files/AvatarV3-Circle.png" alt="SYTMC_NetGames Logo" class="logo-img">
+                SYTMC_NetGames
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-users"></i> 关于我们</a></li>
+                <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-images"></i> 游戏图库</a></li>
+                <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-headset"></i> 加入我们</a></li>
+                <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-envelope"></i> 联系我们</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 顶部横幅区域 -->
+    <div class="top-banner">
+        <div class="banner-overlay">
+        </div>
+    </div>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>加入<span>SYTMC_NetGames</span><br>开启你的游戏新旅程</h1>
+                <p>我们是由专业玩家组成的游戏组织，致力于为所有游戏爱好者提供竞技平台、专业培训和社区交流。无论你是休闲玩家还是职业选手，这里都有你的位置。</p>
+                <a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#" class="cta-button">立即加入 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 轮播图区域 -->
+    <section class="carousel-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的精彩活动</h2>
+                <p>参与我们组织的游戏活动，体验独特的游戏文化和社区氛围</p>
+            </div>
+            
+            <div class="carousel">
+                <div class="carousel-inner" id="carouselInner" style="transform: translateX(-200%);">
+                    <div class="carousel-item">
+                        <img src="./SYTMC_NetGames _ 专业游戏组织_files/photo-1550745165-9bc0b252726f" alt="游戏社区活动">
+                        <div class="carousel-caption">
+                            <h3>2023年度社区庆典</h3>
+                            <p>与我们一起庆祝游戏社区的成长与成就</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./SYTMC_NetGames _ 专业游戏组织_files/photo-1511512578047-dfb367046420" alt="团队训练">
+                        <div class="carousel-caption">
+                            <h3>玩家技能提升营</h3>
+                            <p>专业玩家指导，提升你的游戏技巧</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./SYTMC_NetGames _ 专业游戏组织_files/photo-1542751371-adc38448a05e" alt="游戏嘉年华">
+                        <div class="carousel-caption">
+                            <h3>年度游戏嘉年华</h3>
+                            <p>体验最新游戏，参与趣味竞赛</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="carousel-indicators" id="indicators">
+                    <!-- JavaScript会动态生成指示器 -->
+                <div class="indicator"></div><div class="indicator"></div><div class="indicator active"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图文介绍区域 -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的优势</h2>
+                <p>为什么选择加入SYTMC_NetGames</p>
+            </div>
+            
+            <div class="features-container">
+                <div class="feature">
+                    <div class="feature-image">
+                        <img src="./SYTMC_NetGames _ 专业游戏组织_files/photo-1593305841991-05c297ba4575" alt="专业训练">
+                    </div>
+                    <div class="feature-content">
+                        <h3>专业级游戏社区</h3>
+                        <p>我们拥有完善的社区体系和专业玩家团队，为不同水平的玩家提供针对性指导。无论你是初学者还是高级玩家，都能找到适合自己的位置。</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> 个性化游戏指导</li>
+                            <li><i class="fas fa-check-circle"></i> 资深玩家经验分享</li>
+                            <li><i class="fas fa-check-circle"></i> 每周游戏技巧研讨会</li>
+                            <li><i class="fas fa-check-circle"></i> 实时游戏策略分析</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-image">
+                        <img src="./SYTMC_NetGames _ 专业游戏组织_files/photo-1552820728-8b83bb6b773f" alt="社区活动">
+                    </div>
+                    <div class="feature-content">
+                        <h3>多元化社区活动</h3>
+                        <p>从休闲游戏聚会到主题游戏夜，我们提供多层次、多形式的活动。每月举办超过10场不同主题的活动，满足各类玩家的社交需求。</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> 月度游戏主题夜</li>
+                            <li><i class="fas fa-check-circle"></i> 季度社区庆典</li>
+                            <li><i class="fas fa-check-circle"></i> 新游戏体验会</li>
+                            <li><i class="fas fa-check-circle"></i> 游戏开发者见面会</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-image">
+                        <img src="./SYTMC_NetGames _ 专业游戏组织_files/photo-1542751110-97427bbecf20" alt="社区交流">
+                    </div>
+                    <div class="feature-content">
+                        <h3>活跃玩家社区</h3>
+                        <p>加入拥有超过3000名活跃玩家的社区，结识志同道合的游戏伙伴。我们定期举办线上活动、游戏主题沙龙和线下聚会。</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> 专属Discord社区</li>
+                            <li><i class="fas fa-check-circle"></i> 每月线下聚会</li>
+                            <li><i class="fas fa-check-circle"></i> 游戏主题讨论组</li>
+                            <li><i class="fas fa-check-circle"></i> 跨平台组队系统</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>SYTMC_NetGames成立于2018年，是专业的游戏玩家组织，致力于推动游戏文化发展和玩家社区建设。我们拥有专业的社区管理团队和活动策划，为玩家提供全方位的游戏体验。</p>
+                    <div class="social-icons">
+                        <a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fab fa-discord"></i></a>
+                        <a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fab fa-twitter"></i></a>
+                        <a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fab fa-facebook"></i></a>
+                        <a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fab fa-instagram"></i></a>
+                        <a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-chevron-right"></i> 首页</a></li>
+                        <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                        <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-chevron-right"></i> 游戏图库</a></li>
+                        <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-chevron-right"></i> 加入我们</a></li>
+                        <li><a href="file:///C:/Users/DELL/Downloads/deepseek_html_20250722_30cff6.html#"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 上海市浦东新区游戏大道88号</li>
+                        <li><i class="fas fa-phone"></i> 400-123-4567</li>
+                        <li><i class="fas fa-envelope"></i> contact@sytmc-netgames.com</li>
+                        <li><i class="fas fa-clock"></i> 周一至周日 10:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 SYTMC_NetGames 版权所有 | 沪ICP备12345678号-1</p>
+            </div>
+        </div>
+    </footer>
+</body>
+    <script>
+        // 导航栏切换
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // 轮播图功能
+        const carouselInner = document.getElementById('carouselInner');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const indicatorsContainer = document.getElementById('indicators');
+        
+        const items = document.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+        let interval;
+        
+        // 创建指示器
+        items.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+        
+        const indicators = document.querySelectorAll('.indicator');
+        
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // 更新指示器
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        // 自动播放
+        function startAutoPlay() {
+            interval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(interval);
+        }
+        
+        // 添加事件监听
+        prevBtn.addEventListener('click', () => {
+            stopAutoPlay();
+            prevSlide();
+            startAutoPlay();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            stopAutoPlay();
+            nextSlide();
+            startAutoPlay();
+        });
+        
+        // 鼠标悬停时暂停自动播放
+        carouselInner.addEventListener('mouseenter', stopAutoPlay);
+        carouselInner.addEventListener('mouseleave', startAutoPlay);
+        
+        // 初始化
+        startAutoPlay();
+        
+        // 滚动效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+
+</body></html>
