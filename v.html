@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a2a;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+            background: rgba(10, 10, 42, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(10px);
+            margin: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff69b4, #9370db, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .story-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .story-section:nth-child(2) { animation-delay: 0.5s; }
+        .story-section:nth-child(3) { animation-delay: 1s; }
+        .story-section:nth-child(4) { animation-delay: 1.5s; }
+        .story-section:nth-child(5) { animation-delay: 2s; }
+
+        .story-title {
+            font-size: 1.5rem;
+            color: #ff69b4;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ff69b4;
+            padding-left: 10px;
+        }
+
+        .story-content {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.2), rgba(147, 112, 219, 0.2));
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4;
+            }
+            to {
+                text-shadow: 0 0 15px #ff69b4, 0 0 25px #ff69b4, 0 0 35px #ff69b4;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <h1>我们的故事</h1>
+        
+        <div class="story-section">
+            <div class="story-title">初遇</div>
+            <div class="story-content">
+                <p>还记得我们第一次相遇的那天，阳光正好，微风不燥。你的笑容像春天的第一缕阳光，瞬间照亮了我的世界。</p>
+        </div>
+        
+        <div class="story-section">
+            <div class="story-title">相知</div>
+            <div class="story-content">
+                <p>随着时间推移，我们越来越了解彼此。每一次交谈，每一次分享，都让我们的心靠得更近。</p>
+                <p>你的善良、独特个性让我深深着迷。在你身边，我感到无比安心和快乐。</p>
+            </div>
+        </div>
+        
+        <div class="story-section">
+            <div class="story-title">相爱</div>
+            <div class="story-content">
+                <p>当我鼓起勇气向你表白时，虽然没有直接接受我，但是在我不断的＂骚扰＂下你被我打动了</p>
+                <p>我们一起经历了那么多美好的时光：公园的漫步，周末的电影，还有那些深夜的长谈...</p>
+        </div>
+        
+        <div class="story-section">
+            <div class="story-title">未来</div>
+            <div class="story-content">
+                <p>亲爱的，我期待着与你的每一个明天。无论前方是阳光明媚还是风雨交加，我都愿意牵着你的手，一起走过。</p>
+                <p>我承诺会永远相信你、尊重你、支持你，让你在我的爱中感受到安全和幸福。</p>
+                <p>你是我今生最美丽的相遇，也是我永远不想失去的珍贵。</p>
+            </div>
+        </div>
+        <script>
+        // 创建星星背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机位置和大小
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+        });
+    </script>
+</body>
+</html>
