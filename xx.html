@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸运学号抽取</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* 新年装饰元素 */
+        .decoration {
+            position: absolute;
+            z-index: 0;
+        }
+        
+        .lantern {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #ffeb3b;
+            border-radius: 50% 50% 40% 40%;
+            top: 10%;
+            left: 10%;
+            animation: swing 3s infinite ease-in-out;
+        }
+        
+        .lantern:before, .lantern:after {
+            content: '';
+            position: absolute;
+            background: #ff9800;
+        }
+        
+        .lantern:before {
+            width: 10px;
+            height: 15px;
+            top: -15px;
+            left: 15px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .lantern:after {
+            width: 30px;
+            height: 10px;
+            bottom: -10px;
+            left: 5px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .lantern.right {
+            left: auto;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes swing {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffeb3b;
+            bottom: 15%;
+            right: 15%;
+            animation: firework 2s infinite;
+        }
+        
+        @keyframes firework {
+            0% { transform: translateY(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        
+        /* 主容器 */
+        .container {
+            background-color: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 标题样式 */
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ffeb3b;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .excluded {
+            color: #ffccbc;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        /* 数字显示区域 */
+        .number-display {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .number {
+            font-size: 10rem;
+            font-weight: 800;
+            color: #ffeb3b;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            line-height: 1;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+        
+        .number-label {
+            font-size: 1.2rem;
+            color: #ffccbc;
+            margin-top: 10px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            background: linear-gradient(to right, #ff9800, #ff5722);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 0 auto;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 87, 34, 0.5);
+        }
+        
+        .btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            background: linear-gradient(to right, #9e9e9e, #757575);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* 新年祝福 */
+        .blessing {
+            margin-top: 40px;
+            font-size: 1.1rem;
+            color: #ffeb3b;
+            font-style: italic;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .number {
+                font-size: 8rem;
+                min-height: 150px;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+            
+            .lantern {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .number {
+                font-size: 6rem;
+                min-height: 120px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 新年装饰 -->
+    <div class="lantern decoration"></div>
+    <div class="lantern decoration right"></div>
+    <div class="firework decoration"></div>
+    
+    <!-- 主内容区 -->
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-star"></i> 点击抽取幸运儿 <i class="fas fa-star"></i></h1>
+        </div>
+        
+        <div class="number-display">
+            <div class="number" id="numberDisplay">?</div>
+            <div class="number-label" id="numberLabel">等待抽取...</div>
+        </div>
+        
+        <button class="btn" id="drawButton">
+            <i class="fas fa-random"></i> 抽取幸运学号
+        </button>
+        
+       
+    </div>
+    
+    <script>
+        // 定义排除的数字
+        const EXCLUDED_NUMBERS = [11, 37];
+        // 新年祝福语数组
+        const BLESSINGS = [
+            "新年快乐！愿您和家人幸福安康！",
+            "恭喜发财！好运连连！",
+            "万事如意！心想事成！",
+            "身体健康！财源广进！",
+            "阖家欢乐！岁岁平安！",
+            "金玉满堂！福星高照！",
+            "年年有余！步步高升！"
+        ];
+        
+        // DOM元素
+        const numberDisplay = document.getElementById('numberDisplay');
+        const numberLabel = document.getElementById('numberLabel');
+        const drawButton = document.getElementById('drawButton');
+        const blessingText = document.getElementById('blessingText');
+        
+        // 当前抽取的数字
+        let currentNumber = null;
+        // 可用的数字数组（1-40，排除11和37）
+        let availableNumbers = [];
+        
+        // 初始化可用数字数组
+        function initializeAvailableNumbers() {
+            availableNumbers = [];
+            for (let i = 1; i <= 40; i++) {
+                if (!EXCLUDED_NUMBERS.includes(i)) {
+                    availableNumbers.push(i);
+                }
+            }
+        }
+        
+        // 随机抽取一个数字
+        function drawRandomNumber() {
+            if (availableNumbers.length === 0) {
+                // 如果所有数字都抽过了，重置数组
+                initializeAvailableNumbers();
+                numberLabel.textContent = "所有数字已抽取，重新开始！";
+            }
+            
+            // 从可用数字中随机选择一个
+            const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+            currentNumber = availableNumbers[randomIndex];
+            
+            // 从可用数组中移除已抽取的数字
+            availableNumbers.splice(randomIndex, 1);
+            
+            // 更新显示
+            updateDisplay();
+            
+            // 更新祝福语
+            updateBlessing();
+        }
+        
+        // 更新数字显示
+        function updateDisplay() {
+            // 添加动画效果
+            numberDisplay.style.transform = 'scale(1.2)';
+            numberDisplay.style.opacity = '0.7';
+            
+            // 短暂延迟后显示新数字
+            setTimeout(() => {
+                numberDisplay.textContent = currentNumber;
+                numberDisplay.style.transform = 'scale(1)';
+                numberDisplay.style.opacity = '1';
+                
+                // 更新标签
+                numberLabel.textContent = `幸运儿： ${currentNumber} 号！`;
+            }, 300);
+        }
+        
+        // 更新祝福语
+        function updateBlessing() {
+            const randomIndex = Math.floor(Math.random() * BLESSINGS.length);
+            blessingText.textContent = BLESSINGS[randomIndex];
+            
+            // 添加一点动画效果
+            blessingText.style.opacity = '0.7';
+            setTimeout(() => {
+                blessingText.style.opacity = '1';
+            }, 300);
+        }
+        
+        // 添加按钮点击事件
+        drawButton.addEventListener('click', drawRandomNumber);
+        
+        // 添加键盘支持
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Space' || event.code === 'Enter') {
+                event.preventDefault();
+                drawRandomNumber();
+            }
+        });
+        
+        // 初始化
+        function init() {
+            initializeAvailableNumbers();
+            updateBlessing();
+            
+            // 初始显示说明
+            numberDisplay.textContent = '?';
+            numberLabel.textContent = '抽取学号';
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
